@@ -25,18 +25,6 @@ const getAll = () => {
 
 export default { getAll, create, update }
 ```
-  
-We will also need to change the url specified in the effect in <i>App.js</i>:
-  
-```js
-  useEffect(() => {
-    axios
-      .get('http://localhost:3001/api/notes')
-      .then(res => {
-        setNotes(res.data)
-      })
-  }, [])
-```
 
 <!-- Frontendin tekemä GET-pyyntö osoitteeseen <http://localhost:3001/api/notes> ei jostain syystä toimi: -->
 Now frontend's GET request to <http://localhost:3001/api/notes> does not work for some reason:
@@ -330,9 +318,9 @@ If the project was created with create-react-app, this problem is easy to solve.
 
 After a restart, the React development environment will work as a [proxy](https://create-react-app.dev/docs/proxying-api-requests-in-development/). If the React code does an HTTP request to a server address at <i>http://localhost:3000</i> not managed by the React application itself (i.e. when requests are not about fetching the CSS or JavaScript of the application), the request will be redirected to the server at <i>http://localhost:3001</i>. 
 
-Now the frontend is also fine, working with the server both in development- and production mode. 
+Now the frontend is also fine, working with the server both in development and production modes. 
 
-A negative aspect of our approach is how complicated it is to deploy the frontend. Deploying a new version requires generating new production build of the frontend and copying it to the backend repository. This makes creating an automated [deployment pipeline](https://martinfowler.com/bliki/DeploymentPipeline.html) more difficult. Deployment pipeline means an automated and controlled way to move the code from the computer of the developer through different tests and quality checks to the production environment. Building a deployment pipeline is the topic of [part 11](https://fullstackopen.com/en/part11) of this course.
+A negative aspect of our approach is how complicated it is to deploy the frontend. Deploying a new version requires generating a new production build of the frontend and copying it to the backend repository. This makes creating an automated [deployment pipeline](https://martinfowler.com/bliki/DeploymentPipeline.html) more difficult. Deployment pipeline means an automated and controlled way to move the code from the computer of the developer through different tests and quality checks to the production environment. Building a deployment pipeline is the topic of [part 11](https://fullstackopen.com/en/part11) of this course.
 
 There are multiple ways to achieve this (for example placing both backend and frontend code [to the same repository](https://github.com/mars/heroku-cra-node) ) but we will not go into those now. 
 
